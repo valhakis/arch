@@ -1,0 +1,38 @@
+1. timedatectl set-ntp true
+
+[one]
+[two]
+
+2. mkfs.ext4 /dev/sdxy
+3. mount /dev/sdxy /mnt
+
+4. mkdir /mnt/boot
+5. mount /dev/sdxy /mnt/boot
+
+6. pacstrap /mnt base
+
+7. genfstab -U /mnt >> /mnt/etc/fstab
+8. arch-chroot /mnt
+
+9. ln -sf /usr/share/zoneinfo/Europe/Tallinn /etc/localtime
+
+10. howclock --systohc
+11. /etc/locale.gen
+
+12. /etc/locale.conf
+13. LANG=en_US.UTF-8
+
+14. locale-gen
+
+15. echo arch > /etc/hostname
+
+16. /etc/hosts
+127.0.1.1 arch.localdomain arch
+
+17. mkinitcpio -p linux
+
+18. passwd
+
+19. INSTALL [intel-ucode grub os-prober]
+20. grub-install --target=i386-pc /dev/sdx
+21. grub-mkconfig -o /boot/grub/grub.cfg
